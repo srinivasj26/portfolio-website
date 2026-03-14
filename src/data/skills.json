@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Core Languages",
+    "items": ["Java", "Python", "SQL", "TypeScript"]
+  },
+  {
+    "category": "Backend Engineering",
+    "items": ["Spring Boot", "REST API Design", "Microservices architecture", "JPA / Hibernate", "Distributed systems"]
+  },
+  {
+    "category": "AI / Automation",
+    "items": ["Agentic AI systems", "LLM-based workflow automation", "WatsonX integrations", "AI-assisted developer tools"]
+  },
+  {
+    "category": "Data & Messaging",
+    "items": ["SQL optimization", "Redis", "Apache Kafka"]
+  },
+  {
+    "category": "Infrastructure",
+    "items": ["Docker", "Kubernetes", "AWS fundamentals"]
+  }
+]

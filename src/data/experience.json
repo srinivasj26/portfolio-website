@@ -1,0 +1,19 @@
+[
+  {
+    "role": "Software Engineer",
+    "company": "IBM India Software Labs — Bangalore",
+    "duration": "2022 – Present",
+    "description": "Working on enterprise modernization initiatives focused on automating large-scale migrations and improving developer productivity.",
+    "projects": [
+      {
+        "name": "AI-Driven Migration Platform",
+        "description": "Developed migration tooling enabling users to perform complex migration tasks through a chat-based interface. Built tools running on legacy systems and agent systems interacting via LLM workflows.",
+        "impact": [
+          "Reduces complexity of migration workflows",
+          "Improves accessibility of internal tooling",
+          "Enables faster analysis and execution of tasks"
+        ]
+      }
+    ]
+  }
+]
