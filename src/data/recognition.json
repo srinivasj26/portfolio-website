@@ -1,0 +1,39 @@
+{
+  "awards": [
+    {
+      "title": "Top performance rating (PBC)",
+      "description": "Rated in the top performance category in IBM’s Personal Business Commitment (PBC) year-end evaluation for two consecutive years, reflecting consistent delivery and impact.",
+      "date": "2024 & 2025",
+      "issuer": "IBM"
+    },
+    {
+      "title": "Manager’s Choice Award",
+      "description": "Quarterly recognition nominated by my manager for demonstrating values and behaviors that drive team and business outcomes. Recipients are acknowledged across the organization.",
+      "date": "Q2 2024",
+      "issuer": "IBM"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "IBM Certified Advocate - Cloud v2",
+      "issuer": "IBM",
+      "description": "Foundational certification in cloud computing basics, IBM Cloud platform essentials, and cloud deployment models.",
+      "date": null,
+      "url": null
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "description": "Validates foundational understanding of AWS Cloud services, security and compliance, and cloud concepts.",
+      "date": null,
+      "url": null
+    },
+    {
+      "name": "Microsoft Certified: Azure AI Fundamentals",
+      "issuer": "Microsoft",
+      "description": "Demonstrates knowledge of AI and machine learning concepts and Azure services for building AI solutions.",
+      "date": null,
+      "url": null
+    }
+  ]
+}

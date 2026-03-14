@@ -54,9 +54,26 @@ npm run build
 ## 📂 Project Structure
 
 -   `src/components/`: Modular React components (Hero, Skills, Scene, etc.).
--   `src/data/`: JSON files containing portfolio content (experience, skills, identity).
+-   `src/data/`: JSON content (experience, skills, identity, recognition). Recognition uses `recognition.json` (array of `{ title, description, date?, issuer? }`); section is hidden when the array is empty.
+-   `src/test/`: Test setup and utilities.
 -   `src/*.css`: Component and section-specific styles.
 -   `public/`: Static assets and textures.
+
+### Tests
+
+Run the test suite:
+
+```bash
+npm run test        # watch mode
+npm run test:run    # single run (CI)
+```
+
+## 🔮 Future improvements
+
+-   **Profile links:** Update `src/data/identity.json` with your real GitHub and LinkedIn profile URLs (replace `srinivasj` in the paths if your username differs).
+-   **Experience:** Edit the optional “Open source & side projects” entry in `src/data/experience.json`, or remove it if you prefer a single role.
+-   **E2E:** Add Playwright or Cypress for critical user flows.
+-   **Deploy:** Add a deployment section (e.g. Vercel, Netlify) and link the live URL in the README.
 
 ## 📜 License
 

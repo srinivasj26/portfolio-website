@@ -11,6 +11,7 @@ import Timeline from './components/Timeline';
 import Skills from './components/Skills';
 import AgentSandbox from './components/AgentSandbox';
 import Experience from './components/Experience';
+import Recognition from './components/Recognition';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -39,8 +40,9 @@ const App: React.FC = () => {
         <Hero />
         <Manifesto />
         <Experience />
-        <Timeline />
+        <Recognition />
         <About />
+        <Timeline />
         <Skills />
         <AgentSandbox />
       </main>

@@ -106,6 +106,138 @@
   color: var(--text-primary);
 }
 
+/* ── Recognition Section ── */
+.recognition-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.recognition-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.recognition-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 2rem 2.5rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.recognition-item:hover {
+  border-color: rgba(15, 98, 254, 0.2);
+  box-shadow: 0 0 0 1px rgba(15, 98, 254, 0.08);
+}
+
+.recognition-item-content {
+  max-width: 720px;
+}
+
+.recognition-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.recognition-meta {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-bottom: 0.75rem;
+}
+
+.recognition-desc {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.recognition-block {
+  margin-bottom: 4rem;
+}
+
+.recognition-block:last-child {
+  margin-bottom: 0;
+}
+
+.recognition-block-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.certifications-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.certification-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.certification-item:hover {
+  border-color: rgba(15, 98, 254, 0.2);
+  box-shadow: 0 0 0 1px rgba(15, 98, 254, 0.08);
+}
+
+.certification-name {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.certification-issuer {
+  font-size: var(--text-sm);
+  color: var(--accent-cyan);
+  margin-bottom: 0.5rem;
+}
+
+.certification-desc {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.certification-meta {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.certification-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.certification-link:hover {
+  text-decoration: underline;
+}
+
+.certification-link:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
 /* Experience Section */
 .experience-timeline {
   position: relative;

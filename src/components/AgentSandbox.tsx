@@ -10,9 +10,15 @@ const defaultResponses: Record<string, string> = {
 
 const FALLBACK_RESPONSE = "Got it. This is a demo — pick a command above to see how I’d respond to a problem like that.";
 
+function nextId(): string {
+  return (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : `id-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+type ChatMessage = { id: string; role: 'user' | 'agent'; text: string };
+
 const AgentSandbox: React.FC = () => {
-  const [history, setHistory] = useState<{role: 'user' | 'agent', text: string}[]>([
-    { role: 'agent', text: 'Ready to turn complexity into clarity. Try a command below.' }
+  const [history, setHistory] = useState<ChatMessage[]>([
+    { id: nextId(), role: 'agent', text: 'Ready to turn complexity into clarity. Try a command below.' }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -26,28 +32,26 @@ const AgentSandbox: React.FC = () => {
 
   const handlePrompt = (prompt: string) => {
     if (isTyping) return;
-    
-    setHistory(prev => [...prev, { role: 'user', text: `> ${prompt}` }]);
+    const userMsgId = nextId();
+    const agentMsgId = nextId();
+    setHistory(prev => [...prev, { id: userMsgId, role: 'user', text: `> ${prompt}` }]);
     setIsTyping(true);
 
     const response = defaultResponses[prompt] ?? FALLBACK_RESPONSE;
     
-    // Simulate thinking delay
     setTimeout(() => {
-      // Add empty agent message to start filling
-      setHistory(prev => [...prev, { role: 'agent', text: '' }]);
+      setHistory(prev => [...prev, { id: agentMsgId, role: 'agent', text: '' }]);
       
       let currentIndex = 0;
       const typingInterval = setInterval(() => {
         if (currentIndex < response.length) {
-          // Use functional state update to ensure we always append the exact current character
           setHistory(prev => {
             const newHistory = [...prev];
             const lastMsg = newHistory[newHistory.length - 1];
-            // Only append the specific character for this tick
+            if (lastMsg.id !== agentMsgId) return prev;
             newHistory[newHistory.length - 1] = {
-                ...lastMsg,
-                text: response.slice(0, currentIndex + 1)
+              ...lastMsg,
+              text: response.slice(0, currentIndex + 1)
             };
             return newHistory;
           });
@@ -56,7 +60,7 @@ const AgentSandbox: React.FC = () => {
           clearInterval(typingInterval);
           setIsTyping(false);
         }
-      }, 30); // Speed of typing
+      }, 30);
     }, 600);
   };
 
@@ -88,8 +92,8 @@ const AgentSandbox: React.FC = () => {
           </div>
 
           <div className="sandbox-terminal" ref={scrollRef}>
-            {history.map((msg, idx) => (
-              <div key={idx} className={`terminal-message ${msg.role}`}>
+            {history.map((msg) => (
+              <div key={msg.id} className={`terminal-message ${msg.role}`}>
                 {msg.role === 'agent' && <Cpu size={14} className="agent-icon" />}
                 <span style={{ whiteSpace: 'pre-line' }}>{msg.text}</span>
               </div>

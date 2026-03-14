@@ -8,6 +8,7 @@ const ParticleNetwork: React.FC = () => {
 
   const particleCount = 100;
   const maxDistance = 2.5;
+  const maxLines = 800; // Cap line count for performance on low-end devices
 
   const [positions, velocities] = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
@@ -40,11 +41,10 @@ const ParticleNetwork: React.FC = () => {
     }
     positionsAttr.needsUpdate = true;
 
-    // Update lines based on distance
-    const linePositions = [];
-    const lineOpacities = [];
-    for (let i = 0; i < particleCount; i++) {
-      for (let j = i + 1; j < particleCount; j++) {
+    // Update lines based on distance; cap count for performance
+    const linePositions: number[] = [];
+    for (let i = 0; i < particleCount && linePositions.length / 6 < maxLines; i++) {
+      for (let j = i + 1; j < particleCount && linePositions.length / 6 < maxLines; j++) {
         const dx = positionsAttr.array[i * 3] - positionsAttr.array[j * 3];
         const dy = positionsAttr.array[i * 3 + 1] - positionsAttr.array[j * 3 + 1];
         const dz = positionsAttr.array[i * 3 + 2] - positionsAttr.array[j * 3 + 2];
@@ -55,12 +55,9 @@ const ParticleNetwork: React.FC = () => {
             positionsAttr.array[i * 3], positionsAttr.array[i * 3 + 1], positionsAttr.array[i * 3 + 2],
             positionsAttr.array[j * 3], positionsAttr.array[j * 3 + 1], positionsAttr.array[j * 3 + 2]
           );
-          const alpha = 1.0 - Math.sqrt(distSq) / maxDistance;
-          lineOpacities.push(alpha, alpha);
         }
       }
     }
-    
     lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
     // Color attribute could be added for fading lines, mapping opacity to color channels if using vertexColors, 
     // but a basic semi-transparent material does fine for now.
@@ -70,7 +67,7 @@ const ParticleNetwork: React.FC = () => {
     <group>
       <points ref={pointsRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={particleCount} array={positions} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         </bufferGeometry>
         <pointsMaterial size={0.08} color="#0f62fe" transparent opacity={0.8} />
       </points>
