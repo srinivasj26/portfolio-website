@@ -33,15 +33,16 @@ const App: React.FC = () => {
 
   return (
     <div className="portfolio-app">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <CustomCursor />
-      <main>
+      <main id="main-content">
         <Hero />
         <Manifesto />
-        <About />
+        <Experience />
         <Timeline />
+        <About />
         <Skills />
         <AgentSandbox />
-        <Experience />
       </main>
       <Footer />
     </div>

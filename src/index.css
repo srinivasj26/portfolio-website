@@ -57,10 +57,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  cursor: default;
+}
+
+/* Custom cursor only for fine pointer, no reduced-motion preference (set by CustomCursor component) */
+html[data-custom-cursor="true"] body,
+html[data-custom-cursor="true"] a,
+html[data-custom-cursor="true"] button {
   cursor: none;
 }
 
-a, button { cursor: none; }
+/* Focus visible — professional, accessible */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
 
 /* ── Typography System ── */
 /* Clear, intentional hierarchy — no global h2 gradient (too many conflicts) */
@@ -126,17 +138,27 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Section header row — icon + h2 together */
+/* Section header row — icon + title, balanced */
 .section-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-bottom: 3rem;
 }
 
-.section-icon {
+.section-header .section-icon {
   color: var(--accent-blue);
   flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.section-header h2:not(.massive-title) {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 0;
 }
 
 /* Glass card utility */
@@ -188,6 +210,14 @@ a:hover { color: var(--accent-cyan); }
   opacity: 0;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .scroll-reveal {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 .delay-100 { animation-delay: 60ms; }
 .delay-200 { animation-delay: 120ms; }
 .delay-300 { animation-delay: 180ms; }
@@ -224,6 +254,28 @@ a:hover { color: var(--accent-cyan); }
   .container { padding: 0 2rem; }
 }
 @media (max-width: 768px) {
+  .container { padding: 0 1.25rem; }
   .section-padding { padding: 5rem 0; }
   h2 { margin-bottom: 2rem; }
+}
+
+/* Skip link — accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 10001;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent-blue);
+  color: white;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid white;
+  outline-offset: 2px;
 }

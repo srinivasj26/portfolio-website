@@ -27,7 +27,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({ children, className = '
   };
 
   const Wrapper = href ? motion.a : motion.button;
-  const wrapperProps = href ? { href } : { onClick };
+  const wrapperProps = href ? { href } : { type: 'button' as const, onClick };
 
   return (
     <motion.div

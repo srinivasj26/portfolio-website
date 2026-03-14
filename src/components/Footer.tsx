@@ -2,25 +2,32 @@ import React from 'react';
 import identity from '../data/identity.json';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
+type IdentityWithLinks = typeof identity & { links?: { github?: string; linkedin?: string; email?: string } };
+const id = identity as IdentityWithLinks;
+const links = id.links ?? {};
+const githubUrl = links.github ?? 'https://github.com';
+const linkedinUrl = links.linkedin ?? 'https://linkedin.com';
+const emailUrl = links.email ?? 'mailto:contact@srinivasj.dev';
+
 const Footer: React.FC = () => {
   return (
-    <footer className="footer animate-fade-in-up delay-500">
+    <footer className="footer">
       <div className="container">
         <p>&copy; {new Date().getFullYear()} {identity.name}. Built with React &amp; Vite.</p>
-        <p style={{ color: "var(--text-tertiary)", fontSize: "0.85rem", marginTop: "0.5rem" }}>
-          Designed with an emphasis on performance, automation, and enterprise elegance.
+        <p className="footer-tagline">
+          Designed for performance, automation, and clarity.
         </p>
-        <div className="social-links" style={{ marginTop: "1.5rem" }}>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <Github size={20} />
+        <nav className="social-links" aria-label="Connect">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <Github size={20} aria-hidden />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <Linkedin size={20} />
+          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <Linkedin size={20} aria-hidden />
           </a>
-          <a href="mailto:contact@srinivasj.dev" aria-label="Email">
-            <Mail size={20} />
+          <a href={emailUrl} aria-label="Email">
+            <Mail size={20} aria-hidden />
           </a>
-        </div>
+        </nav>
       </div>
     </footer>
   );

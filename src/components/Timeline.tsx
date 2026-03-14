@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { GitBranch } from 'lucide-react';
 
 const timelineData = [
   {
@@ -38,10 +39,16 @@ const Timeline: React.FC = () => {
   const pathLength = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <section id="evolution" className="section-padding timeline-section" ref={containerRef}>
+    <section id="evolution" className="section-padding timeline-section" ref={containerRef} aria-labelledby="timeline-heading">
       <div className="container">
-        <h2 className="animate-fade-in-up">The Evolution</h2>
-        
+        <div className="scroll-reveal">
+          <span className="section-label animate-fade-in-up">Journey</span>
+          <div className="section-header animate-fade-in-up delay-100">
+            <GitBranch className="section-icon" size={32} aria-hidden />
+            <h2 id="timeline-heading">The evolution</h2>
+          </div>
+        </div>
+
         <div className="timeline-container">
           <div className="timeline-line-wrapper">
             <svg 
@@ -49,15 +56,15 @@ const Timeline: React.FC = () => {
               preserveAspectRatio="none" 
               className="timeline-svg"
             >
-              <line x1="10" y1="0" x2="10" y2="100" stroke="rgba(255,255,255,0.08)" strokeWidth="2" />
+              <line x1="10" y1="0" x2="10" y2="100" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
               <motion.line 
                 x1="10" y1="0" x2="10" y2="100" 
-                stroke="url(#gradient)" 
+                stroke="url(#timeline-gradient)" 
                 strokeWidth="4" 
                 style={{ pathLength }}
               />
               <defs>
-                <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%" gradientUnits="userSpaceOnUse">
+                <linearGradient id="timeline-gradient" x1="0" y1="0" x2="0" y2="100%" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stopColor="#1192e8" />
                   <stop offset="100%" stopColor="#0f62fe" />
                 </linearGradient>

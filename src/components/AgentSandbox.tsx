@@ -3,14 +3,16 @@ import { Terminal, Send, Server, Cpu } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 
 const defaultResponses: Record<string, string> = {
-  "Analyze Legacy Code": "Scanning COBOL framework... Identified 452 business logic rules. Translating to Node.js microservices. Estimated refactor time: Accelerated by 85% via automated workflows.",
-  "Query: Tech Stack": "Current Matrix:\n- Backend: Node.js, Express, Go\n- Frontend: React, TypeScript, Vite\n- AI: MCP tools, LLM Orchestration\n- Systems: IBM Enterprise Platforms",
-  "Deploy Modernization": "Initializing deployment sequence. Bypassing manual approval gates via verified agentic checks. Deployment successful. System uptime maximized.",
+  "Explain this code": "Analyzing codebase... Found 3 functions with high complexity. Summary: Main handler delegates to helpers; consider extracting validation. Estimated readability score: 7/10.",
+  "Suggest improvements": "Recommendations:\n1. Add error boundaries for async flows\n2. Cache repeated API calls\n3. Use TypeScript strict mode for safer refactors\n— Apply these? (demo only)",
+  "Run tests": "Running test suite... Unit: 42 passed. Integration: 8 passed. Coverage: 87%. No regressions detected.",
 };
+
+const FALLBACK_RESPONSE = "Got it. This is a demo — pick a command above to see how I’d respond to a problem like that.";
 
 const AgentSandbox: React.FC = () => {
   const [history, setHistory] = useState<{role: 'user' | 'agent', text: string}[]>([
-    { role: 'agent', text: 'IBM Systems Agent v2.4 initialized. Awaiting commands.' }
+    { role: 'agent', text: 'Ready to turn complexity into clarity. Try a command below.' }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -28,7 +30,7 @@ const AgentSandbox: React.FC = () => {
     setHistory(prev => [...prev, { role: 'user', text: `> ${prompt}` }]);
     setIsTyping(true);
 
-    const response = defaultResponses[prompt] || "Command not recognized.";
+    const response = defaultResponses[prompt] ?? FALLBACK_RESPONSE;
     
     // Simulate thinking delay
     setTimeout(() => {
@@ -59,17 +61,20 @@ const AgentSandbox: React.FC = () => {
   };
 
   return (
-    <section className="section-padding sandbox-section">
+    <section className="section-padding sandbox-section" aria-labelledby="sandbox-heading">
       <div className="container">
-        <div className="section-header animate-fade-in-up">
-          <Terminal className="section-icon" size={32} />
-          <h2>Agent Sandbox.</h2>
+        <div className="scroll-reveal">
+          <span className="section-label animate-fade-in-up">Demo</span>
+          <div className="section-header animate-fade-in-up delay-100">
+            <Terminal className="section-icon" size={32} aria-hidden />
+            <h2 id="sandbox-heading">Agent sandbox</h2>
+          </div>
         </div>
         <p className="sandbox-desc animate-fade-in-up delay-100">
-          Interact with a simulation of the core agent frameworks I build to automate enterprise workflows.
+          A small taste of how I think about software and AI—problems without a playbook, turned into systems people can rely on. Try a command to see a simulated response.
         </p>
 
-        <div className="sandbox-container glass-panel animate-fade-in-up delay-200">
+        <div className="sandbox-container glass-panel animate-fade-in-up delay-200" role="region" aria-label="Agent simulation terminal">
           <div className="sandbox-header">
             <div className="sandbox-controls">
               <span className="dot red"></span>
@@ -78,7 +83,7 @@ const AgentSandbox: React.FC = () => {
             </div>
             <div className="sandbox-title">
               <Server size={14} className="icon-subtle" />
-              <span>srinivas-agentic-runtime</span>
+              <span>problem-solver-demo</span>
             </div>
           </div>
 

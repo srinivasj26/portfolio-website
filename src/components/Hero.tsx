@@ -11,25 +11,31 @@ const Hero: React.FC = () => {
       </div>
       
       <div className="container hero-content-wrapper">
-        <div className="hero-text-content">
+        <div className="hero-text-content scroll-reveal">
           <p className="hero-greeting animate-fade-in-up">
-            Hi, I'm {identity.name} —
+            Hi, I'm {identity.name}
           </p>
-          
+
           <h1 className="hero-title animate-fade-in-up delay-100">
             {identity.title}.
           </h1>
-          
+
+          {'subtitle' in identity && identity.subtitle && (
+            <p className="hero-subtitle-line animate-fade-in-up delay-150">
+              {identity.subtitle}
+            </p>
+          )}
+
           <p className="hero-description animate-fade-in-up delay-200">
             {identity.tagline}
           </p>
 
           <div className="hero-actions animate-fade-in-up delay-300">
             <MagneticButton className="btn btn-primary" onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}>
-              View My Work
+              View my work
             </MagneticButton>
             <MagneticButton className="btn btn-outline" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
-              About Me
+              About me
             </MagneticButton>
           </div>
         </div>

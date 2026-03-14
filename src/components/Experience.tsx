@@ -12,17 +12,16 @@ const Experience: React.FC = () => {
     target.style.setProperty('--mouse-y', `${y}px`);
   };
 
-  const exp = experience[0]; // Focus on the single major project
-  const project = exp.projects[0];
+  const exp = experience[0];
 
   return (
-    <section id="experience" className="section-padding experience-hero-section">
+    <section id="experience" className="section-padding experience-hero-section" aria-labelledby="experience-heading">
       <div className="container experience-hero-grid">
-        {/* Sticky Left Column */}
-        <div className="experience-sticky-col">
+        <div className="experience-sticky-col scroll-reveal">
+          <span className="section-label animate-fade-in-up">Experience</span>
           <div className="section-header animate-fade-in-up delay-100">
-            <Briefcase className="section-icon" size={32} />
-            <h2 className="massive-title">Defining Impact.</h2>
+            <Briefcase className="section-icon" size={32} aria-hidden />
+            <h2 id="experience-heading" className="massive-title">Defining impact.</h2>
           </div>
           <p className="experience-summary animate-fade-in-up delay-200">
             {exp.description}
@@ -31,25 +30,31 @@ const Experience: React.FC = () => {
             <span className="role-badge">{exp.role}</span>
             <span className="company-badge">{exp.company}</span>
           </div>
+          <span className="duration-tag duration-tag-sticky">{exp.duration}</span>
         </div>
-        
-        {/* Scrolling Right Column */}
-        <div className="experience-scroll-col">
-          <div className="glow-card massive-project-card" onMouseMove={handleMouseMove}>
-            <div className="glow-card-content project-card-inner">
-              <span className="duration-tag">{exp.duration}</span>
-              <h3 className="project-title">{project.name}</h3>
-              <p className="project-desc">{project.description}</p>
-              
-              <div className="impact-metrics">
-                {project.impact.map((impact, iIdx) => (
-                  <div key={iIdx} className="impact-metric-item">
-                    <ChevronRight size={24} className="metric-icon" />
-                    <p>{impact}</p>
+
+        <div className="experience-scroll-col scroll-reveal">
+          <div className="experience-projects">
+            {exp.projects.map((project, pIdx) => (
+              <div
+                key={pIdx}
+                className="glow-card experience-project-card"
+                onMouseMove={handleMouseMove}
+              >
+                <div className="glow-card-content project-card-inner">
+                  <h3 className="project-title">{project.name}</h3>
+                  <p className="project-desc">{project.description}</p>
+                  <div className="impact-metrics">
+                    {project.impact.map((impact, iIdx) => (
+                      <div key={iIdx} className="impact-metric-item">
+                        <ChevronRight size={24} className="metric-icon" />
+                        <p>{impact}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -3,15 +3,24 @@
     "role": "Software Engineer",
     "company": "IBM India Software Labs — Bangalore",
     "duration": "2022 – Present",
-    "description": "Working on enterprise modernization initiatives focused on automating large-scale migrations and improving developer productivity.",
+    "description": "Backend engineering and agentic AI: building scalable systems, APIs, and tooling that turn complex problems into workflows people can actually use.",
     "projects": [
       {
-        "name": "AI-Driven Migration Platform",
-        "description": "Developed migration tooling enabling users to perform complex migration tasks through a chat-based interface. Built tools running on legacy systems and agent systems interacting via LLM workflows.",
+        "name": "Backend systems & APIs",
+        "description": "Designed and built production backend systems in Java and Spring Boot—REST APIs, microservices, and data layers powering large-scale enterprise clients.",
+        "impact": [
+          "Scalable APIs and microservices in production",
+          "Clear contracts and reliability for downstream teams",
+          "SQL and data modeling for performance and consistency"
+        ]
+      },
+      {
+        "name": "AI-driven migration platform",
+        "description": "Led design and build of an agentic AI platform: tools on legacy systems, LLM-backed agents, and a natural-language interface so developers can run complex migration workflows via chat.",
         "impact": [
           "Reduces complexity of migration workflows",
-          "Improves accessibility of internal tooling",
-          "Enables faster analysis and execution of tasks"
+          "Makes internal tooling accessible without deep domain docs",
+          "Faster analysis and execution through AI-assisted automation"
         ]
       }
     ]
